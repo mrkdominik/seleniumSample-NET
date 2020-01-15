@@ -4,6 +4,8 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.IE;
 using SeleniumGoogleCalc.SeleniumHelpers;
+using SeleniumGoogleCalc.PageObjectModel;
+
 
 namespace SeleniumGoogleCalc
 {
@@ -12,6 +14,7 @@ namespace SeleniumGoogleCalc
     public class Tests
     {
         private IWebDriver _driver;
+        private readonly string url = "https://www.google.com/search?q=calculator";
 
         [SetUp]
         public void SetupTest()
@@ -26,12 +29,11 @@ namespace SeleniumGoogleCalc
         }
 
         [Test]
-        public void OpenPageChrome()
+        public void Addition()
         {
             // Arrange
             // Act
-            string url = "https://www.google.com/search?q=calculator";
-            _driver.Navigate().GoToUrl(url);
+            new CalculatorPage(_driver).Addition(url);
             // Assert
         }
     }
