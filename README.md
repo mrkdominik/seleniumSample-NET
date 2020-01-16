@@ -1,4 +1,4 @@
-# Project Title
+# Google web calculator automated test.
 
 Project for test automation. Testing functions of google web calculator
 
