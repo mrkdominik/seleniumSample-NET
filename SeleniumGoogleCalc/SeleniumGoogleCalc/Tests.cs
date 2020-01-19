@@ -12,15 +12,13 @@ namespace SeleniumGoogleCalc
     [TestFixture]
     public class Tests
     {
-        private IWebDriver _driver;
-        private Browser _browser;
+        private IWebDriver _webDriver;
         private string _baseUrl;
 
         [SetUp]
         public void SetupTest()
         {
-            _driver = new DriverFactory().CreateInstance(_browser);
-            _browser = Browser.Chrome;
+            _webDriver = new DriverFactory().GetInstance(Browser.Chrome);
             _baseUrl = "https://www.google.com/search?q=calculator";
         }
 
@@ -29,10 +27,10 @@ namespace SeleniumGoogleCalc
         {
             try
             {
-                if (_driver != null)
+                if (_webDriver != null)
                 {
-                    _driver.Close();
-                    _driver.Quit();
+                    _webDriver.Close();
+                    _webDriver.Quit();
                 }
             }
             catch (Exception ex)
@@ -44,61 +42,45 @@ namespace SeleniumGoogleCalc
         [Test]
         public void AddSixteenAndFour()
         {
-            // Arrange
-            // Act
-            new CalculatorPage(_driver).AdditionSixteenAndFour(_baseUrl);
-            int result = new CalculatorPage(_driver).GetResult();
+            CalculatorPage cp = new CalculatorPage(_webDriver, _baseUrl);
+            decimal result = cp.GetAdditionSixteenAndFour();
 
-            // Assert
             Assert.AreEqual(20, result);
         }
 
         [Test]
         public void AddZeroAndZero()
         {
-            // Arrange
-            // Act
-            new CalculatorPage(_driver).AdditionZeroAndZero(_baseUrl);
-            int result = new CalculatorPage(_driver).GetResult();
+            CalculatorPage cp = new CalculatorPage(_webDriver, _baseUrl);
+            decimal result = cp.GetAdditionZeroAndZero();
 
-            // Assert
             Assert.AreEqual(0, result);
         }
-
 
         [Test]
         public void AddMinusOneAndZero()
         {
-            // Arrange
-            // Act
-            new CalculatorPage(_driver).AdditionMinusOneAndZero(_baseUrl);
-            int result = new CalculatorPage(_driver).GetResult();
+            CalculatorPage cp = new CalculatorPage(_webDriver, _baseUrl);
+            decimal result = cp.GetAdditionMinusOneAndZero();
 
-            // Assert
             Assert.AreEqual(-1, result);
         }
 
         [Test]
         public void AddMinusOneAndMinusOne()
         {
-            // Arrange
-            // Act
-            new CalculatorPage(_driver).AddMinusOneAndMinusOne(_baseUrl);
-            int result = new CalculatorPage(_driver).GetResult();
+            CalculatorPage cp = new CalculatorPage(_webDriver, _baseUrl);
+            decimal result = cp.GetAdditionMinusOneAndMinusOne();
 
-            // Assert
             Assert.AreEqual(-2, result);
         }
 
         [Test]
         public void AddZeroAndMinusOne()
         {
-            // Arrange
-            // Act
-            new CalculatorPage(_driver).AddZeroAndMinusOne(_baseUrl);
-            int result = new CalculatorPage(_driver).GetResult();
+            CalculatorPage cp = new CalculatorPage(_webDriver, _baseUrl);
+            decimal result = cp.GetAdditionZeroAndMinusOne();
 
-            // Assert
             Assert.AreEqual(-1, result);
         }
     }

@@ -11,20 +11,34 @@ namespace SeleniumGoogleCalc.SeleniumHelpers
 {
     class DriverFactory
     {
-        public IWebDriver CreateInstance(Browser browser)
+        private IWebDriver _webDriver;
+        public Browser _browser;
+
+        public void Initialize()
         {
-            if (Browser.Chrome == browser)
+            if (Browser.Chrome == _browser)
             {
-                return new ChromeDriver();
+                _webDriver = new ChromeDriver();
             }
-            else if (Browser.IE == browser)
+            else if (Browser.IE == _browser)
             {
-                return new InternetExplorerDriver();
+                _webDriver = new InternetExplorerDriver();
             }
             else
             {
-                return new FirefoxDriver();
+                _webDriver = new FirefoxDriver();
             }
+        }
+
+        public IWebDriver GetInstance(Browser browser)
+        {
+            if (_webDriver == null)
+            {
+                _browser = browser;
+                Initialize();
+            }
+
+            return _webDriver;
         }
     }
 }
