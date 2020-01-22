@@ -1,16 +1,14 @@
 ﻿using System;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.IE;
 using SeleniumGoogleCalc.SeleniumHelpers;
 using SeleniumGoogleCalc.PageObjectModels;
-using SeleniumGoogleCalc.Enums;
 
 namespace SeleniumGoogleCalc
 {
+
     [TestFixture]
-    public class Tests
+    public class Addition
     {
         private IWebDriver _webDriver;
         private string _baseUrl;
@@ -18,7 +16,7 @@ namespace SeleniumGoogleCalc
         [SetUp]
         public void SetupTest()
         {
-            _webDriver = new DriverFactory().GetInstance(Browser.Chrome);
+            _webDriver = new BrowserDriver(Browser.Chrome);
             _baseUrl = "https://www.google.com/search?q=calculator";
         }
 
@@ -35,7 +33,7 @@ namespace SeleniumGoogleCalc
             }
             catch (Exception ex)
             {
-                throw new ArgumentNullException("webDriver can not be reset properly", ex);
+                throw new WebDriverException("Couldn't close webDriver", ex);
             }
         }
 

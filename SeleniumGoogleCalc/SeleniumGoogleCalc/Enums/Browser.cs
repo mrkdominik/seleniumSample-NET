@@ -1,13 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SeleniumGoogleCalc.Enums
+﻿namespace SeleniumGoogleCalc
 {
     public enum Browser
     {
-        Chrome,
+        All,
+        HtmlUnit,
         IE,
-        Firefox
+        Edge,
+        Firefox,
+        Safari,
+        Chrome,
+        Opera,
+        Remote,
+        IPhone,
+        Android,
+        WindowsPhone,
+        PhantomJS
     }
 }

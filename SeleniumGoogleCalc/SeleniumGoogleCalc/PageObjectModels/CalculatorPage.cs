@@ -1,23 +1,10 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
-using SeleniumGoogleCalc.SeleniumHelpers;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using OpenQA.Selenium;
 
 namespace SeleniumGoogleCalc.PageObjectModels
 {
     public class CalculatorPage
     {
         private readonly IWebDriver _webDriver;
-
-        public CalculatorPage(IWebDriver driver, string baseUrl)
-        {
-            _webDriver = driver;
-            _webDriver.Navigate().GoToUrl(baseUrl);
-        }
-
         private IWebElement Number0 => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(5) > td:nth-child(1) > div > div"));
         private IWebElement Number1 => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(4) > td:nth-child(1) > div > div"));
         private IWebElement Number2 => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(4) > td:nth-child(2) > div > div"));
@@ -32,17 +19,24 @@ namespace SeleniumGoogleCalc.PageObjectModels
         private IWebElement Minus => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(4) > td:nth-child(4) > div > div"));
         private IWebElement Multiply => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(3) > td:nth-child(4) > div > div"));
         private IWebElement Devide => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(2) > td:nth-child(4) > div > div"));
-        private IWebElement Equals => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(5) > td:nth-child(3) > div > div"));
+        private IWebElement Equal => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(5) > td:nth-child(3) > div > div"));
         private IWebElement Dot => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(5) > td:nth-child(2) > div > div"));
         private IWebElement Result => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.BRpYC > div.TIGsTb > div.fB3vD > div > div"));
 
+        public CalculatorPage(IWebDriver driver, string baseUrl)
+        {
+            _webDriver = driver;
+            _webDriver.Navigate().GoToUrl(baseUrl);
+        }
+
         public decimal GetAdditionSixteenAndFour()
         {
+            Number0.Click();
             Number1.Click();
             Number6.Click();
             Plus.Click();
             Number4.Click();
-            Equals.Click();
+            Equal.Click();
 
             return GetResult();
         }
@@ -52,7 +46,7 @@ namespace SeleniumGoogleCalc.PageObjectModels
             Number0.Click();
             Plus.Click();
             Number0.Click();
-            Equals.Click();
+            Equal.Click();
 
             return GetResult();
         }
@@ -63,7 +57,7 @@ namespace SeleniumGoogleCalc.PageObjectModels
             Number1.Click();
             Plus.Click();
             Number0.Click();
-            Equals.Click();
+            Equal.Click();
 
             return GetResult();
         }
@@ -75,7 +69,7 @@ namespace SeleniumGoogleCalc.PageObjectModels
             Plus.Click();
             Minus.Click();
             Number1.Click();
-            Equals.Click();
+            Equal.Click();
 
             return GetResult();
         }
@@ -85,7 +79,7 @@ namespace SeleniumGoogleCalc.PageObjectModels
             Number0.Click();
             Minus.Click();
             Number1.Click();
-            Equals.Click();
+            Equal.Click();
 
             return GetResult();
         }
