@@ -12,12 +12,17 @@ namespace SeleniumGoogleCalc
     {
         private IWebDriver _webDriver;
         private string _baseUrl;
+        private CalculatorPageModel calculatorPageModel;
 
         [SetUp]
         public void SetupTest()
         {
             _webDriver = new BrowserDriver(Browser.Chrome);
             _baseUrl = "https://www.google.com/search?q=calculator";
+
+            _webDriver.Navigate().GoToUrl(_baseUrl);
+            CalculatorPage calculatorPage = new CalculatorPage(_webDriver);
+            calculatorPageModel = new CalculatorPageModel(calculatorPage);
         }
 
         [TearDown]
@@ -40,8 +45,14 @@ namespace SeleniumGoogleCalc
         [Test]
         public void AddSixteenAndFour()
         {
-            CalculatorPage cp = new CalculatorPage(_webDriver, _baseUrl);
-            decimal result = cp.GetAdditionSixteenAndFour();
+            calculatorPageModel.Number0.Click();
+            calculatorPageModel.Number1.Click();
+            calculatorPageModel.Number6.Click();
+            calculatorPageModel.Plus.Click();
+            calculatorPageModel.Number4.Click();
+            calculatorPageModel.Equal.Click();
+            
+            decimal result = decimal.Parse(calculatorPageModel.Result.Text.ToString());
 
             Assert.AreEqual(20, result);
         }
@@ -49,8 +60,12 @@ namespace SeleniumGoogleCalc
         [Test]
         public void AddZeroAndZero()
         {
-            CalculatorPage cp = new CalculatorPage(_webDriver, _baseUrl);
-            decimal result = cp.GetAdditionZeroAndZero();
+            calculatorPageModel.Number0.Click();
+            calculatorPageModel.Plus.Click();
+            calculatorPageModel.Number0.Click();
+            calculatorPageModel.Equal.Click();
+
+            decimal result = decimal.Parse(calculatorPageModel.Result.Text.ToString());
 
             Assert.AreEqual(0, result);
         }
@@ -58,8 +73,13 @@ namespace SeleniumGoogleCalc
         [Test]
         public void AddMinusOneAndZero()
         {
-            CalculatorPage cp = new CalculatorPage(_webDriver, _baseUrl);
-            decimal result = cp.GetAdditionMinusOneAndZero();
+            calculatorPageModel.Minus.Click();
+            calculatorPageModel.Number1.Click();
+            calculatorPageModel.Plus.Click();
+            calculatorPageModel.Number0.Click();
+            calculatorPageModel.Equal.Click();
+
+            decimal result = decimal.Parse(calculatorPageModel.Result.Text.ToString());
 
             Assert.AreEqual(-1, result);
         }
@@ -67,8 +87,14 @@ namespace SeleniumGoogleCalc
         [Test]
         public void AddMinusOneAndMinusOne()
         {
-            CalculatorPage cp = new CalculatorPage(_webDriver, _baseUrl);
-            decimal result = cp.GetAdditionMinusOneAndMinusOne();
+            calculatorPageModel.Minus.Click();
+            calculatorPageModel.Number1.Click();
+            calculatorPageModel.Plus.Click();
+            calculatorPageModel.Minus.Click();
+            calculatorPageModel.Number1.Click();
+            calculatorPageModel.Equal.Click();
+
+            decimal result = decimal.Parse(calculatorPageModel.Result.Text.ToString());
 
             Assert.AreEqual(-2, result);
         }
@@ -76,8 +102,13 @@ namespace SeleniumGoogleCalc
         [Test]
         public void AddZeroAndMinusOne()
         {
-            CalculatorPage cp = new CalculatorPage(_webDriver, _baseUrl);
-            decimal result = cp.GetAdditionZeroAndMinusOne();
+            calculatorPageModel.Number0.Click();
+            calculatorPageModel.Plus.Click();
+            calculatorPageModel.Minus.Click();
+            calculatorPageModel.Number1.Click();
+            calculatorPageModel.Equal.Click();
+
+            decimal result = decimal.Parse(calculatorPageModel.Result.Text.ToString());
 
             Assert.AreEqual(-1, result);
         }

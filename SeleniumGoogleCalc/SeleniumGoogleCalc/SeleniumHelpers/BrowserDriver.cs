@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 namespace SeleniumGoogleCalc.SeleniumHelpers
 {
 
-    public class BrowserDriver : IWebDriver
+    public partial class BrowserDriver : IWebDriver
     {
 
         private Browser browser;
@@ -39,17 +39,22 @@ namespace SeleniumGoogleCalc.SeleniumHelpers
 
         private IWebDriver CreateDriver()
         {
-            switch (browser)
+            if (webDriver == null)
             {
-                case Browser.Chrome:
-                    return ChromeDriver();
-                case Browser.Firefox:
-                    return FirefoxDriver();
-                case Browser.IE:
-                    return IEDriver();
+                switch (browser)
+                {
+                    case Browser.Chrome:
+                        return ChromeDriver();
+                    case Browser.Firefox:
+                        return FirefoxDriver();
+                    case Browser.IE:
+                        return IEDriver();
+                }
+
+                throw new WebDriverException("Invalid browser name");
             }
 
-            throw new WebDriverException("Invalid browser name");
+            return webDriver;
         }
 
         private IWebDriver IEDriver()
