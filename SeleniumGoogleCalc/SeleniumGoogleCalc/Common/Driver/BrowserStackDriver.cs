@@ -10,23 +10,27 @@ namespace SeleniumGoogleCalc.Common
     public class BrowserStackDriver : IWebDriver
     {
         readonly IWebDriver webDriver;
-        readonly Browser environment;
+        readonly Browser browser;
 
-        public BrowserStackDriver(Browser environment)
+        /// <summary>
+        /// Creates a new instace of BrowserStackDriver for required Browser
+        /// </summary>
+        /// <param name="environment"></param>
+        public BrowserStackDriver(Browser browser)
         {
-            this.environment = environment;
+            this.browser = browser;
             webDriver = CreateDriver();
         }
 
         private IWebDriver CreateDriver()
         {
             RemoteSessionSettings caps = new RemoteSessionSettings();
-            caps.AddMetadataSetting("browser", environment);
+            caps.AddMetadataSetting("browser", browser);
             caps.AddMetadataSetting("os", "Windows");
             caps.AddMetadataSetting("os_version", "10");
             caps.AddMetadataSetting("resolution", "1024x768");
-            caps.AddMetadataSetting("browserstack.user", "foo");
-            caps.AddMetadataSetting("browserstack.key", "foo");
+            caps.AddMetadataSetting("browserstack.user", "test21332");
+            caps.AddMetadataSetting("browserstack.key", "tHoXzq5u3YbSDum1BByd");
 
             return new RemoteWebDriver(new Uri("http://hub-cloud.browserstack.com/wd/hub/"), caps);
         }

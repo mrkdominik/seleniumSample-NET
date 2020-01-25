@@ -8,13 +8,12 @@ using System.Collections.Generic;
 
 namespace SeleniumGoogleCalc.Tests
 {
-
     [TestFixture(Profile.Local, Browser.Chrome)]
     [TestFixture(Profile.Local, Browser.IE)]    
     [Parallelizable(ParallelScope.Fixtures)]
     public class Addition : DriverFactory
     {
-        public Addition(Profile profile, Browser environment) : base(profile, environment) { }
+        public Addition(Profile profile, Browser browser) : base(profile, browser) { }
 
         private CalculatorBlock calculatorBlock;
 

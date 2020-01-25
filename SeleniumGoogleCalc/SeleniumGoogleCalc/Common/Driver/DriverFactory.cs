@@ -14,26 +14,27 @@ namespace SeleniumGoogleCalc.Common
     {
         protected IWebDriver driver;
         protected Profile profile;
-        protected Browser environment;
+        protected Browser browser;
 
-        public DriverFactory(Profile profile, Browser environment)
+        /// <summary>
+        /// Creates new instance of  local or remote IWebDriver
+        /// </summary>
+        /// <param name="profile">Local/Remote</param>
+        /// <param name="browser">Browser</param>
+        public DriverFactory(Profile profile, Browser browser)
         {
             this.profile = profile;
-            this.environment = environment;
+            this.browser = browser;
         }
 
         [SetUp]
         public void Init()
         {
             if (profile == Profile.Local)
-            {
-                driver = new BrowserDriver(environment);                       
-            }
+                driver = new BrowserDriver(browser);                       
 
             if (profile == Profile.RemoteBroweserStack)
-            {
-                driver = new BrowserStackDriver(environment);
-            }
+                driver = new BrowserStackDriver(browser);
         }
 
         [TearDown]

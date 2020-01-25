@@ -4,6 +4,9 @@ using SeleniumGoogleCalc.Common;
 
 namespace SeleniumGoogleCalc.PageObjectModels
 {
+    /// <summary>
+    /// PageObjectModel for Calculator block
+    /// </summary>
     public class CalculatorBlock
     {
         private readonly IWebDriver webDriver;
@@ -25,6 +28,10 @@ namespace SeleniumGoogleCalc.PageObjectModels
         public IWebElement Dot => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(5) > td:nth-child(2) > div > div"));
         public IWebElement Result => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.BRpYC > div.TIGsTb > div.fB3vD > div > div"));
 
+        /// <summary>
+        /// Set driver for page blok, to be able to find web elements
+        /// </summary>
+        /// <param name="driver"></param>
         public CalculatorBlock(IWebDriver driver)
         {
             webDriver = driver;

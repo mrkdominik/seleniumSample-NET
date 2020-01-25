@@ -13,7 +13,7 @@ namespace SeleniumGoogleCalc.Common
         private readonly IWebDriver webDriver;
 
         /// <summary>
-        /// Create instance of webDriver based on required browser
+        /// Create new local instance of webDriver based on required browser
         /// </summary>
         /// <param name="browser"></param>
         public BrowserDriver(Browser browser)
