@@ -1,21 +1,12 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using OpenQA.Selenium.Support.PageObjects;
+using SeleniumGoogleCalc.Common;
 
-namespace SeleniumGoogleCalc.SeleniumHelpers
+namespace SeleniumGoogleCalc.PageObjectModels
 {
-    public class CalculatorPage
+    public class CalculatorBlock
     {
-        private IWebDriver webDriver;
-
-        public CalculatorPage() { }
-
-        public CalculatorPage(IWebDriver webDriver)
-        {
-            this.webDriver = webDriver;
-        }
-
+        private readonly IWebDriver webDriver;
         public IWebElement Number0 => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(5) > td:nth-child(1) > div > div"));
         public IWebElement Number1 => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(4) > td:nth-child(1) > div > div"));
         public IWebElement Number2 => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(4) > td:nth-child(2) > div > div"));
@@ -33,5 +24,10 @@ namespace SeleniumGoogleCalc.SeleniumHelpers
         public IWebElement Equal => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(5) > td:nth-child(3) > div > div"));
         public IWebElement Dot => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(5) > td:nth-child(2) > div > div"));
         public IWebElement Result => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.BRpYC > div.TIGsTb > div.fB3vD > div > div"));
+
+        public CalculatorBlock(IWebDriver driver)
+        {
+            webDriver = driver;
+        }
     }
 }

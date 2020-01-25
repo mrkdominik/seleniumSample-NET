@@ -1,4 +1,4 @@
-﻿namespace SeleniumGoogleCalc
+﻿namespace SeleniumGoogleCalc.Common
 {
     public enum Browser
     {

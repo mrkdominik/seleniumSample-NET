@@ -1,71 +1,56 @@
 ﻿using System;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using SeleniumGoogleCalc.SeleniumHelpers;
+using SeleniumGoogleCalc.Common;
 using SeleniumGoogleCalc.PageObjectModels;
+using OpenQA.Selenium.Remote;
+using System.Collections.Generic;
 
-namespace SeleniumGoogleCalc
+namespace SeleniumGoogleCalc.Tests
 {
 
-    [TestFixture]
-    public class Addition
+    [TestFixture(Profile.Local, Browser.Chrome)]
+    [TestFixture(Profile.Local, Browser.IE)]    
+    [Parallelizable(ParallelScope.Fixtures)]
+    public class Addition : DriverFactory
     {
-        private IWebDriver _webDriver;
-        private string _baseUrl;
-        private CalculatorPageModel calculatorPageModel;
+        public Addition(Profile profile, Browser environment) : base(profile, environment) { }
+
+        private CalculatorBlock calculatorBlock;
 
         [SetUp]
-        public void SetupTest()
+        public void PrepareElements()
         {
-            _webDriver = new BrowserDriver(Browser.Chrome);
-            _baseUrl = "https://www.google.com/search?q=calculator";
-
-            _webDriver.Navigate().GoToUrl(_baseUrl);
-            CalculatorPage calculatorPage = new CalculatorPage(_webDriver);
-            calculatorPageModel = new CalculatorPageModel(calculatorPage);
-        }
-
-        [TearDown]
-        public void AfterTestRun()
-        {
-            try
-            {
-                if (_webDriver != null)
-                {
-                    _webDriver.Close();
-                    _webDriver.Quit();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new WebDriverException("Couldn't close webDriver", ex);
-            }
+            driver.Navigate().GoToUrl(new Uri("https://www.google.com/search?q=calculator"));
+            driver.Manage().Window.Maximize();
+            calculatorBlock = new CalculatorBlock(driver);
         }
 
         [Test]
         public void AddSixteenAndFour()
         {
-            calculatorPageModel.Number0.Click();
-            calculatorPageModel.Number1.Click();
-            calculatorPageModel.Number6.Click();
-            calculatorPageModel.Plus.Click();
-            calculatorPageModel.Number4.Click();
-            calculatorPageModel.Equal.Click();
-            
-            decimal result = decimal.Parse(calculatorPageModel.Result.Text.ToString());
+            calculatorBlock.Number0.Click();
+            calculatorBlock.Number1.Click();
+            calculatorBlock.Number6.Click();
+            calculatorBlock.Plus.Click();
+            calculatorBlock.Number4.Click();
+            calculatorBlock.Equal.Click();
+
+            decimal result = decimal.Parse(calculatorBlock.Result.Text.ToString());
 
             Assert.AreEqual(20, result);
         }
 
+
         [Test]
         public void AddZeroAndZero()
         {
-            calculatorPageModel.Number0.Click();
-            calculatorPageModel.Plus.Click();
-            calculatorPageModel.Number0.Click();
-            calculatorPageModel.Equal.Click();
+            calculatorBlock.Number0.Click();
+            calculatorBlock.Plus.Click();
+            calculatorBlock.Number0.Click();
+            calculatorBlock.Equal.Click();
 
-            decimal result = decimal.Parse(calculatorPageModel.Result.Text.ToString());
+            decimal result = decimal.Parse(calculatorBlock.Result.Text.ToString());
 
             Assert.AreEqual(0, result);
         }
@@ -73,13 +58,13 @@ namespace SeleniumGoogleCalc
         [Test]
         public void AddMinusOneAndZero()
         {
-            calculatorPageModel.Minus.Click();
-            calculatorPageModel.Number1.Click();
-            calculatorPageModel.Plus.Click();
-            calculatorPageModel.Number0.Click();
-            calculatorPageModel.Equal.Click();
+            calculatorBlock.Minus.Click();
+            calculatorBlock.Number1.Click();
+            calculatorBlock.Plus.Click();
+            calculatorBlock.Number0.Click();
+            calculatorBlock.Equal.Click();
 
-            decimal result = decimal.Parse(calculatorPageModel.Result.Text.ToString());
+            decimal result = decimal.Parse(calculatorBlock.Result.Text.ToString());
 
             Assert.AreEqual(-1, result);
         }
@@ -87,14 +72,14 @@ namespace SeleniumGoogleCalc
         [Test]
         public void AddMinusOneAndMinusOne()
         {
-            calculatorPageModel.Minus.Click();
-            calculatorPageModel.Number1.Click();
-            calculatorPageModel.Plus.Click();
-            calculatorPageModel.Minus.Click();
-            calculatorPageModel.Number1.Click();
-            calculatorPageModel.Equal.Click();
+            calculatorBlock.Minus.Click();
+            calculatorBlock.Number1.Click();
+            calculatorBlock.Plus.Click();
+            calculatorBlock.Minus.Click();
+            calculatorBlock.Number1.Click();
+            calculatorBlock.Equal.Click();
 
-            decimal result = decimal.Parse(calculatorPageModel.Result.Text.ToString());
+            decimal result = decimal.Parse(calculatorBlock.Result.Text.ToString());
 
             Assert.AreEqual(-2, result);
         }
@@ -102,13 +87,13 @@ namespace SeleniumGoogleCalc
         [Test]
         public void AddZeroAndMinusOne()
         {
-            calculatorPageModel.Number0.Click();
-            calculatorPageModel.Plus.Click();
-            calculatorPageModel.Minus.Click();
-            calculatorPageModel.Number1.Click();
-            calculatorPageModel.Equal.Click();
+            calculatorBlock.Number0.Click();
+            calculatorBlock.Plus.Click();
+            calculatorBlock.Minus.Click();
+            calculatorBlock.Number1.Click();
+            calculatorBlock.Equal.Click();
 
-            decimal result = decimal.Parse(calculatorPageModel.Result.Text.ToString());
+            decimal result = decimal.Parse(calculatorBlock.Result.Text.ToString());
 
             Assert.AreEqual(-1, result);
         }
