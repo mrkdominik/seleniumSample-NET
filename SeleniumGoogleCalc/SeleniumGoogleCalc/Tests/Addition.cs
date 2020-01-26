@@ -1,15 +1,12 @@
-﻿using System;
-using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using NUnit.Framework;
 using SeleniumGoogleCalc.Common;
 using SeleniumGoogleCalc.PageObjectModels;
-using OpenQA.Selenium.Remote;
-using System.Collections.Generic;
+using System;
 
 namespace SeleniumGoogleCalc.Tests
 {
     [TestFixture(Profile.Local, Browser.Chrome)]
-    [TestFixture(Profile.Local, Browser.IE)]    
+    [TestFixture(Profile.Local, Browser.IE)]
     [Parallelizable(ParallelScope.Fixtures)]
     public class Addition : DriverFactory
     {
@@ -28,73 +25,36 @@ namespace SeleniumGoogleCalc.Tests
         [Test]
         public void AddSixteenAndFour()
         {
-            calculatorBlock.Number0.Click();
-            calculatorBlock.Number1.Click();
-            calculatorBlock.Number6.Click();
-            calculatorBlock.Plus.Click();
-            calculatorBlock.Number4.Click();
-            calculatorBlock.Equal.Click();
-
-            decimal result = decimal.Parse(calculatorBlock.Result.Text.ToString());
-
-            Assert.AreEqual(20, result);
+            calculatorBlock.ClickWholeEquation("16+4");
+            Assert.AreEqual(20, calculatorBlock.GetResult());
         }
-
 
         [Test]
         public void AddZeroAndZero()
         {
-            calculatorBlock.Number0.Click();
-            calculatorBlock.Plus.Click();
-            calculatorBlock.Number0.Click();
-            calculatorBlock.Equal.Click();
-
-            decimal result = decimal.Parse(calculatorBlock.Result.Text.ToString());
-
-            Assert.AreEqual(0, result);
+            calculatorBlock.ClickWholeEquation("0+0");
+            Assert.AreEqual(0, calculatorBlock.GetResult());
         }
 
         [Test]
         public void AddMinusOneAndZero()
         {
-            calculatorBlock.Minus.Click();
-            calculatorBlock.Number1.Click();
-            calculatorBlock.Plus.Click();
-            calculatorBlock.Number0.Click();
-            calculatorBlock.Equal.Click();
-
-            decimal result = decimal.Parse(calculatorBlock.Result.Text.ToString());
-
-            Assert.AreEqual(-1, result);
+            calculatorBlock.ClickWholeEquation("-1+0");
+            Assert.AreEqual(-1, calculatorBlock.GetResult());
         }
 
         [Test]
         public void AddMinusOneAndMinusOne()
         {
-            calculatorBlock.Minus.Click();
-            calculatorBlock.Number1.Click();
-            calculatorBlock.Plus.Click();
-            calculatorBlock.Minus.Click();
-            calculatorBlock.Number1.Click();
-            calculatorBlock.Equal.Click();
-
-            decimal result = decimal.Parse(calculatorBlock.Result.Text.ToString());
-
-            Assert.AreEqual(-2, result);
+            calculatorBlock.ClickWholeEquation("-1+-1");
+            Assert.AreEqual(-2, calculatorBlock.GetResult());
         }
 
         [Test]
         public void AddZeroAndMinusOne()
         {
-            calculatorBlock.Number0.Click();
-            calculatorBlock.Plus.Click();
-            calculatorBlock.Minus.Click();
-            calculatorBlock.Number1.Click();
-            calculatorBlock.Equal.Click();
-
-            decimal result = decimal.Parse(calculatorBlock.Result.Text.ToString());
-
-            Assert.AreEqual(-1, result);
+            calculatorBlock.ClickWholeEquation("0+-1");
+            Assert.AreEqual(-1, calculatorBlock.GetResult());
         }
     }
 }

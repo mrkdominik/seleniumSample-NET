@@ -1,10 +1,5 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Remote;
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Configuration;
 
 
 namespace SeleniumGoogleCalc.Common
@@ -31,7 +26,7 @@ namespace SeleniumGoogleCalc.Common
         public void Init()
         {
             if (profile == Profile.Local)
-                driver = new BrowserDriver(browser);                       
+                driver = new BrowserDriver(browser);
 
             if (profile == Profile.RemoteBroweserStack)
                 driver = new BrowserStackDriver(browser);

@@ -2,7 +2,6 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.IE;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace SeleniumGoogleCalc.Common
