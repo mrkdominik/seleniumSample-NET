@@ -1,60 +1,86 @@
-﻿using NUnit.Framework;
-using SeleniumGoogleCalc.Common;
-using SeleniumGoogleCalc.PageObjectModels;
-using System;
+﻿using System;
+using NUnit.Framework;
+using OpenQA.Selenium;
+using SeleniumGoogleCalc.Models;
+using SeleniumToolkit.Common.Drivers;
+using SeleniumToolkit.Common.Enums;
 
 namespace SeleniumGoogleCalc.Tests
 {
-    [TestFixture(Profile.Local, Browser.Chrome)]
-    [TestFixture(Profile.Local, Browser.IE)]
+    [TestFixture(Browser.Chrome)]
+    [TestFixture(Browser.Edge)]
     [Parallelizable(ParallelScope.Fixtures)]
-    public class Addition : DriverFactory
+    public class Addition
     {
-        public Addition(Profile profile, Browser browser) : base(profile, browser) { }
+        private IWebDriver _driver;
+        private readonly Browser _browser;
+        private CalculatorBlock _calculatorBlock;
 
-        private CalculatorBlock calculatorBlock;
+        public Addition(Browser browser)
+        {
+            _browser = browser;
+        }
 
-        [SetUp]
+        [OneTimeSetUp]
         public void PrepareElements()
         {
-            driver.Navigate().GoToUrl(new Uri("https://www.google.com/search?q=calculator"));
-            driver.Manage().Window.Maximize();
-            calculatorBlock = new CalculatorBlock(driver);
+            _driver = DriverFactory.CreateInstanceDesktop(_browser);
+            _driver.Navigate().GoToUrl(new Uri("https://www.google.com/search?q=calculator"));
+            _driver.Manage().Window.Maximize();
+            _calculatorBlock = new CalculatorBlock(_driver);
+        }
+
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            _driver.Quit();
+        }
+
+        [SetUp]
+        public void SetUps()
+        {
+            
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _driver.Navigate().Refresh();
         }
 
         [Test]
         public void AddSixteenAndFour()
         {
-            calculatorBlock.ClickWholeEquation("16+4");
-            Assert.AreEqual(20, calculatorBlock.GetResult());
+            _calculatorBlock.ClickWholeEquation("16+4");
+            Assert.AreEqual(20, _calculatorBlock.GetResult());
         }
 
         [Test]
         public void AddZeroAndZero()
         {
-            calculatorBlock.ClickWholeEquation("0+0");
-            Assert.AreEqual(0, calculatorBlock.GetResult());
+            _calculatorBlock.ClickWholeEquation("0+0");
+            Assert.AreEqual(0, _calculatorBlock.GetResult());
         }
 
         [Test]
         public void AddMinusOneAndZero()
         {
-            calculatorBlock.ClickWholeEquation("-1+0");
-            Assert.AreEqual(-1, calculatorBlock.GetResult());
+            _calculatorBlock.ClickWholeEquation("-1+0");
+            Assert.AreEqual(-1, _calculatorBlock.GetResult());
         }
 
         [Test]
         public void AddMinusOneAndMinusOne()
         {
-            calculatorBlock.ClickWholeEquation("-1+-1");
-            Assert.AreEqual(-2, calculatorBlock.GetResult());
+            _calculatorBlock.ClickWholeEquation("-1+-1");
+            Assert.AreEqual(-2, _calculatorBlock.GetResult());
         }
 
         [Test]
         public void AddZeroAndMinusOne()
         {
-            calculatorBlock.ClickWholeEquation("0+-1");
-            Assert.AreEqual(-1, calculatorBlock.GetResult());
+            _calculatorBlock.ClickWholeEquation("0+-1");
+            Assert.AreEqual(-1, _calculatorBlock.GetResult());
         }
     }
 }
