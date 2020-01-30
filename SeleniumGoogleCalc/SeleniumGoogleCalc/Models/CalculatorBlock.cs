@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
+using System;
 
-namespace SeleniumGoogleCalc.Models
+namespace SeleniumGoogleCalc.PageObjectModels
 {
     /// <summary>
     /// PageObjectModel for Calculator block
@@ -26,7 +27,7 @@ namespace SeleniumGoogleCalc.Models
         public IWebElement Dot => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(5) > td:nth-child(2) > div > div"));
         public IWebElement Result => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.BRpYC > div.TIGsTb > div.fB3vD > div > div"));
         /// <summary>
-        /// Click Equal character and return decimal result
+        /// Click Equal button and return decimal result
         /// </summary>
         /// <returns></returns>
         public decimal GetResult()
@@ -36,7 +37,7 @@ namespace SeleniumGoogleCalc.Models
         }
 
         /// <summary>
-        /// Set driver for page block, to be able to find web elements
+        /// Set driver for page blok, to be able to find web elements
         /// </summary>
         /// <param name="driver"></param>
         public CalculatorBlock(IWebDriver driver)
@@ -52,79 +53,56 @@ namespace SeleniumGoogleCalc.Models
         {
             //todo: filter only acceptable chars
 
-            equation.Trim();
-
-            foreach (char character in equation)
-                ClickElement(character);
+            foreach (char button in equation)
+                ClickElement(button);
         }
 
-        private void ClickElement(char character)
+        private void ClickElement(char button)
         {
-            switch ((int)character)
-            {
-                case 48:
-                    Number0.Click();
-                    break;
+            if (button == char.Parse("0"))
+                Number0.Click();
 
-                case 49:
-                    Number1.Click();
-                    break;
+            else if (button == char.Parse("1"))
+                Number1.Click();
 
-                case 50:
-                    Number2.Click();
-                    break;
+            else if (button == char.Parse("2"))
+                Number2.Click();
 
-                case 51:
-                    Number3.Click();
-                    break;
+            else if (button == char.Parse("3"))
+                Number3.Click();
 
-                case 52:
-                    Number4.Click();
-                    break;
+            else if (button == char.Parse("4"))
+                Number4.Click();
 
-                case 53:
-                    Number5.Click();
-                    break;
+            else if (button == char.Parse("5"))
+                Number5.Click();
 
-                case 54:
-                    Number6.Click();
-                    break;
+            else if (button == char.Parse("6"))
+                Number6.Click();
 
-                case 55:
-                    Number7.Click();
-                    break;
+            else if (button == char.Parse("7"))
+                Number7.Click();
 
-                case 56:
-                    Number8.Click();
-                    break;
+            else if (button == char.Parse("8"))
+                Number8.Click();
 
-                case 57:
-                    Number9.Click();
-                    break;
+            else if (button == char.Parse("9"))
+                Number9.Click();
 
-                case 43:
-                    Plus.Click();
-                    break;
+            else if (button == char.Parse("+"))
+                Plus.Click();
 
-                case 45:
-                    Minus.Click();
-                    break;
+            else if (button == char.Parse("-"))
+                Minus.Click();
 
-                case 47:
-                    Devide.Click();
-                    break;
+            else if (button == char.Parse("/"))
+                Devide.Click();
 
-                case 61:
-                    Equal.Click();
-                    break;
+            else if (button == char.Parse("="))
+                Equal.Click();
 
-                case 46:
-                    Dot.Click();
-                    break;
-            }
-
-
-
+            else if (button == char.Parse("."))
+                Dot.Click();
         }
     }
 }
