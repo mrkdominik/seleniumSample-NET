@@ -25,6 +25,8 @@ namespace SeleniumGoogleCalc.PageObjectModels
         public IWebElement Devide => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(2) > td:nth-child(4) > div > div"));
         public IWebElement Equal => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(5) > td:nth-child(3) > div > div"));
         public IWebElement Dot => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(5) > td:nth-child(2) > div > div"));
+        public IWebElement LeftBracket => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(1) > td:nth-child(1) > div > div"));
+        public IWebElement RightBracket => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(1) > td:nth-child(2) > div > div"));
         public IWebElement Result => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.BRpYC > div.TIGsTb > div.fB3vD > div > div"));
         /// <summary>
         /// Click Equal button and return decimal result
@@ -103,6 +105,12 @@ namespace SeleniumGoogleCalc.PageObjectModels
 
             else if (button == char.Parse("."))
                 Dot.Click();
+
+            else if (button == char.Parse("("))
+                LeftBracket.Click();
+
+            else if (button == char.Parse(")"))
+                RightBracket.Click();
         }
     }
 }
