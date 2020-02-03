@@ -1,15 +1,17 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.IE;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.IE;
+using SeleniumGoogleCalc.Common.Enums;
 
-namespace SeleniumGoogleCalc.Common
+namespace SeleniumGoogleCalc.Common.Drivers
 {
     public class BrowserDriver : IWebDriver
     {
-        private readonly Browser browser;
-        private readonly IWebDriver webDriver;
+        private readonly Browser _browser;
+        private readonly IWebDriver _webDriver;
 
         /// <summary>
         /// Create new local instance of webDriver based on required browser
@@ -17,51 +19,41 @@ namespace SeleniumGoogleCalc.Common
         /// <param name="browser"></param>
         public BrowserDriver(Browser browser)
         {
-            this.browser = browser;
-            webDriver = CreateDriver();
+            _browser = browser;
+            _webDriver = CreateDriver();
         }
 
         private IWebDriver CreateDriver()
         {
-            if (webDriver == null)
-            {
-                return browser switch
-                {
-                    Browser.Chrome => ChromeDriver(),
-                    Browser.Firefox => FirefoxDriver(),
-                    Browser.IE => IEDriver(),
-                    _ => throw new WebDriverException("Invalid browser name"),
-                };
-            }
+            if (_webDriver != null)
+                return _webDriver;
 
-            return webDriver;
+            return _browser switch
+            {
+                Browser.Chrome => ChromeDriver(),
+                Browser.Edge => MsEdgeDriver(),
+                Browser.Ie => IEDriver(),
+                Browser.Safari => throw new NotImplementedException($"{_browser} browser not implemented yet"),
+                Browser.Firefox => throw new NotImplementedException($"{_browser} browser not implemented yet"),
+                Browser.Opera => throw new NotImplementedException($"{_browser} browser not implemented yet"),
+                Browser.PhantomJs => throw new NotImplementedException($"{_browser} browser not implemented yet"),
+                _ => throw new WebDriverException("Invalid browser name"),
+            };
         }
 
-        private IWebDriver IEDriver()
+        private IWebDriver MsEdgeDriver()
         {
             try
             {
-                return new InternetExplorerDriver();
+                return new EdgeDriver();
             }
             catch (Exception ex)
             {
-                throw new WebDriverException("Couldn't create IE driver" + " " + ex.InnerException);
+                throw new WebDriverException("Couldn't create Edge driver" + " " + ex.InnerException);
             }
         }
 
-        private IWebDriver FirefoxDriver()
-        {
-            try
-            {
-                return new InternetExplorerDriver();
-            }
-            catch (Exception ex)
-            {
-                throw new WebDriverException("Couldn't create Firefox driver" + " " + ex.InnerException);
-            }
-        }
-
-        private IWebDriver ChromeDriver()
+        private static IWebDriver ChromeDriver()
         {
             try
             {
@@ -73,30 +65,36 @@ namespace SeleniumGoogleCalc.Common
             }
         }
 
+        private static IWebDriver IEDriver()
+        {
+            try
+            {
+                return new InternetExplorerDriver();
+            }
+            catch (Exception ex)
+            {
+                throw new WebDriverException("Couldn't create Chrome driver" + " " + ex.InnerException);
+            }
+        }
+
         #region Interface
         public string Url
         {
-            get => webDriver.Url;
-            set => webDriver.Url = value;
+            get => _webDriver.Url;
+            set => _webDriver.Url = value;
         }
-
-        public string Title => webDriver.Title;
-
-        public string PageSource => webDriver.PageSource;
-
-        public string CurrentWindowHandle => webDriver.CurrentWindowHandle;
-
-        public ReadOnlyCollection<string> WindowHandles => webDriver.WindowHandles;
-
-        public IWebDriver Driver() => webDriver;
-        public void Close() => webDriver.Close();
-        public void Dispose() => webDriver.Dispose();
-        public IWebElement FindElement(By locator) => webDriver.FindElement(locator);
-        public ReadOnlyCollection<IWebElement> FindElements(By locator) => webDriver.FindElements(locator);
-        public IOptions Manage() => webDriver.Manage();
-        public INavigation Navigate() => webDriver.Navigate();
-        public void Quit() => webDriver.Quit();
-        public ITargetLocator SwitchTo() => webDriver.SwitchTo();
+        public string Title => _webDriver.Title;
+        public string PageSource => _webDriver.PageSource;
+        public string CurrentWindowHandle => _webDriver.CurrentWindowHandle;
+        public ReadOnlyCollection<string> WindowHandles => _webDriver.WindowHandles;
+        public void Close() => _webDriver.Close();
+        public void Dispose() => _webDriver.Dispose();
+        public IWebElement FindElement(By locator) => _webDriver.FindElement(locator);
+        public ReadOnlyCollection<IWebElement> FindElements(By locator) => _webDriver.FindElements(locator);
+        public IOptions Manage() => _webDriver.Manage();
+        public INavigation Navigate() => _webDriver.Navigate();
+        public void Quit() => _webDriver.Quit();
+        public ITargetLocator SwitchTo() => _webDriver.SwitchTo();
         #endregion
     }
 }

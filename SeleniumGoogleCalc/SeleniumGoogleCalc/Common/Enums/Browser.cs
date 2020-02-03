@@ -1,19 +1,13 @@
-﻿namespace SeleniumGoogleCalc.Common
+﻿namespace SeleniumGoogleCalc.Common.Enums
 {
     public enum Browser
     {
-        All,
-        HtmlUnit,
-        IE,
+        PhantomJs,
+        Chrome,
         Edge,
         Firefox,
-        Safari,
-        Chrome,
         Opera,
-        Remote,
-        IPhone,
-        Android,
-        WindowsPhone,
-        PhantomJS
+        Safari,
+        Ie
     }
 }

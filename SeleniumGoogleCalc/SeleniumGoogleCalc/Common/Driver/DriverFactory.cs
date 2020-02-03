@@ -1,41 +1,17 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using SeleniumGoogleCalc.Common.Enums;
 
-
-namespace SeleniumGoogleCalc.Common
+namespace SeleniumGoogleCalc.Common.Drivers
 {
-    [TestFixture]
-    public class DriverFactory
+    public static class DriverFactory
     {
-        protected IWebDriver driver;
-        protected Profile profile;
-        protected Browser browser;
-
-        /// <summary>
-        /// Creates new instance of  local or remote IWebDriver
-        /// </summary>
-        /// <param name="profile">Local/Remote</param>
-        /// <param name="browser">Browser</param>
-        public DriverFactory(Profile profile, Browser browser)
+        public static BrowserDriver CreateInstanceDesktop(Browser browser)
         {
-            this.profile = profile;
-            this.browser = browser;
+            return new BrowserDriver(browser);
         }
 
-        [SetUp]
-        public void Init()
+        public static BrowserStackDriver CreateInstanceBrowserStack(Browser browser)
         {
-            if (profile == Profile.Local)
-                driver = new BrowserDriver(browser);
-
-            if (profile == Profile.RemoteBroweserStack)
-                driver = new BrowserStackDriver(browser);
-        }
-
-        [TearDown]
-        public void Cleanup()
-        {
-            driver.Quit();
+            return new BrowserStackDriver(browser);
         }
     }
 }

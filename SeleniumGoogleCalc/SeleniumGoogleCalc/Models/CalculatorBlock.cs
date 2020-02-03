@@ -8,26 +8,28 @@ namespace SeleniumGoogleCalc.PageObjectModels
     /// </summary>
     public class CalculatorBlock
     {
-        private readonly IWebDriver webDriver;
-        public IWebElement Number0 => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(5) > td:nth-child(1) > div > div"));
-        public IWebElement Number1 => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(4) > td:nth-child(1) > div > div"));
-        public IWebElement Number2 => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(4) > td:nth-child(2) > div > div"));
-        public IWebElement Number3 => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(4) > td:nth-child(3) > div > div"));
-        public IWebElement Number4 => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(3) > td:nth-child(1) > div > div"));
-        public IWebElement Number5 => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(3) > td:nth-child(2) > div > div"));
-        public IWebElement Number6 => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(3) > td:nth-child(3) > div > div"));
-        public IWebElement Number7 => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(2) > td:nth-child(1) > div > div"));
-        public IWebElement Number8 => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(2) > td:nth-child(2) > div > div"));
-        public IWebElement Number9 => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(2) > td:nth-child(3) > div > div"));
-        public IWebElement Plus => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(5) > td:nth-child(4) > div > div"));
-        public IWebElement Minus => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(4) > td:nth-child(4) > div > div"));
-        public IWebElement Multiply => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(3) > td:nth-child(4) > div > div"));
-        public IWebElement Devide => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(2) > td:nth-child(4) > div > div"));
-        public IWebElement Equal => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(5) > td:nth-child(3) > div > div"));
-        public IWebElement Dot => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(5) > td:nth-child(2) > div > div"));
-        public IWebElement LeftBracket => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(1) > td:nth-child(1) > div > div"));
-        public IWebElement RightBracket => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(1) > td:nth-child(2) > div > div"));
-        public IWebElement Result => webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.BRpYC > div.TIGsTb > div.fB3vD > div > div"));
+        // Elements do not have Ids or Names, so Locator as CSS selector was best option
+        private readonly IWebDriver _webDriver;
+        public IWebElement Number0 => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(5) > td:nth-child(1) > div > div"));
+        public IWebElement Number1 => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(4) > td:nth-child(1) > div > div"));
+        public IWebElement Number2 => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(4) > td:nth-child(2) > div > div"));
+        public IWebElement Number3 => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(4) > td:nth-child(3) > div > div"));
+        public IWebElement Number4 => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(3) > td:nth-child(1) > div > div"));
+        public IWebElement Number5 => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(3) > td:nth-child(2) > div > div"));
+        public IWebElement Number6 => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(3) > td:nth-child(3) > div > div"));
+        public IWebElement Number7 => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(2) > td:nth-child(1) > div > div"));
+        public IWebElement Number8 => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(2) > td:nth-child(2) > div > div"));
+        public IWebElement Number9 => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(2) > td:nth-child(3) > div > div"));
+        public IWebElement Plus => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(5) > td:nth-child(4) > div > div"));
+        public IWebElement Minus => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(4) > td:nth-child(4) > div > div"));
+        public IWebElement Multiply => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(3) > td:nth-child(4) > div > div"));
+        public IWebElement Devide => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(2) > td:nth-child(4) > div > div"));
+        public IWebElement Equal => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(5) > td:nth-child(3) > div > div"));
+        public IWebElement Dot => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(5) > td:nth-child(2) > div > div"));
+        public IWebElement LeftBracket => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(1) > td:nth-child(1) > div > div"));
+        public IWebElement RightBracket => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(1) > td:nth-child(2) > div > div"));
+        public IWebElement Result => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.BRpYC > div.TIGsTb > div.fB3vD > div > div"));
+
         /// <summary>
         /// Click Equal button and return decimal result
         /// </summary>
@@ -39,13 +41,10 @@ namespace SeleniumGoogleCalc.PageObjectModels
         }
 
         /// <summary>
-        /// Set driver for page blok, to be able to find web elements
+        /// Set driver for page block, to be able to find web elements
         /// </summary>
         /// <param name="driver"></param>
-        public CalculatorBlock(IWebDriver driver)
-        {
-            webDriver = driver;
-        }
+        public CalculatorBlock(IWebDriver driver) => _webDriver = driver;
 
         /// <summary>
         /// Foreach char in string, click to adequate element in calculator model
@@ -55,62 +54,87 @@ namespace SeleniumGoogleCalc.PageObjectModels
         {
             //todo: filter only acceptable chars
 
-            foreach (char button in equation)
-                ClickElement(button);
+            foreach (char character in equation.Trim())
+                ClickElement(character);
         }
 
-        private void ClickElement(char button)
+        private void ClickElement(char character)
         {
-            if (button == char.Parse("0"))
-                Number0.Click();
+            // Without explicit char parsing, it should be faster.
+            switch ((int)character)
+            {
+                case 40:
+                    LeftBracket.Click();
+                    break;
 
-            else if (button == char.Parse("1"))
-                Number1.Click();
+                case 41:
+                    RightBracket.Click();
+                    break;
 
-            else if (button == char.Parse("2"))
-                Number2.Click();
+                case 42:
+                    Multiply.Click();
+                    break;
 
-            else if (button == char.Parse("3"))
-                Number3.Click();
+                case 43:
+                    Plus.Click();
+                    break;
 
-            else if (button == char.Parse("4"))
-                Number4.Click();
+                case 45:
+                    Minus.Click();
+                    break;
 
-            else if (button == char.Parse("5"))
-                Number5.Click();
+                case 46:
+                    Dot.Click();
+                    break;
 
-            else if (button == char.Parse("6"))
-                Number6.Click();
+                case 47:
+                    Devide.Click();
+                    break;
 
-            else if (button == char.Parse("7"))
-                Number7.Click();
+                case 48:
+                    Number0.Click();
+                    break;
 
-            else if (button == char.Parse("8"))
-                Number8.Click();
+                case 49:
+                    Number1.Click();
+                    break;
 
-            else if (button == char.Parse("9"))
-                Number9.Click();
+                case 50:
+                    Number2.Click();
+                    break;
 
-            else if (button == char.Parse("+"))
-                Plus.Click();
+                case 51:
+                    Number3.Click();
+                    break;
 
-            else if (button == char.Parse("-"))
-                Minus.Click();
+                case 52:
+                    Number4.Click();
+                    break;
 
-            else if (button == char.Parse("/"))
-                Devide.Click();
+                case 53:
+                    Number5.Click();
+                    break;
 
-            else if (button == char.Parse("="))
-                Equal.Click();
+                case 54:
+                    Number6.Click();
+                    break;
 
-            else if (button == char.Parse("."))
-                Dot.Click();
+                case 55:
+                    Number7.Click();
+                    break;
 
-            else if (button == char.Parse("("))
-                LeftBracket.Click();
+                case 56:
+                    Number8.Click();
+                    break;
 
-            else if (button == char.Parse(")"))
-                RightBracket.Click();
+                case 57:
+                    Number9.Click();
+                    break;
+
+                case 61:
+                    Equal.Click();
+                    break;
+            }
         }
     }
 }
