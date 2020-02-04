@@ -26,8 +26,8 @@ namespace SeleniumGoogleCalc.Tests
         [OneTimeSetUp]
         public void PrepareElements()
         {
-            //_driver = DriverFactory.CreateInstanceDesktop(_browser);
-            _driver = DriverFactory.CreateInstanceBrowserStack(_browser);
+            _driver = DriverFactory.CreateInstanceDesktop(_browser);
+            //_driver = DriverFactory.CreateInstanceBrowserStack(_browser);
 
             _driver.Navigate().GoToUrl(new Uri("https://www.google.com/search?q=calculator"));
             _driver.Manage().Window.Maximize();

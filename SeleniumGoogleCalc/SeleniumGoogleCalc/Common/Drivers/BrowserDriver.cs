@@ -32,7 +32,7 @@ namespace SeleniumGoogleCalc.Common.Drivers
             {
                 Browser.Chrome => ChromeDriver(),
                 Browser.Edge => MsEdgeDriver(),
-                Browser.Ie => IEDriver(),
+                Browser.Ie => IeDriver(),
                 Browser.Safari => throw new NotImplementedException($"{_browser} browser not implemented yet"),
                 Browser.Firefox => throw new NotImplementedException($"{_browser} browser not implemented yet"),
                 Browser.Opera => throw new NotImplementedException($"{_browser} browser not implemented yet"),
@@ -65,7 +65,7 @@ namespace SeleniumGoogleCalc.Common.Drivers
             }
         }
 
-        private static IWebDriver IEDriver()
+        private static IWebDriver IeDriver()
         {
             try
             {
@@ -77,7 +77,7 @@ namespace SeleniumGoogleCalc.Common.Drivers
             }
         }
 
-        #region Interface
+        #region Interface implementation
         public string Url
         {
             get => _webDriver.Url;

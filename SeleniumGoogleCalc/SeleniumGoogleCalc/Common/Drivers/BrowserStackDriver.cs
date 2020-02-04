@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Remote;
 using SeleniumGoogleCalc.Common.Enums;
 
@@ -18,24 +21,25 @@ namespace SeleniumGoogleCalc.Common.Drivers
         public BrowserStackDriver(Browser browser)
         {
             _browser = browser;
-            _webDriver = CreateDriver();
+            _webDriver = CreateDriverLegacy();
         }
 
-        private IWebDriver CreateDriver()
+        [Obsolete]
+        private IWebDriver CreateDriverLegacy()
         {
+            //todo: atm are caps hardcoded, but have to be separated away
+
+            //Officially supported by BS, but obsolete, in future we will be force to explicit browserOptions solution..
+            DesiredCapabilities caps = new DesiredCapabilities();
+            caps.SetCapability("browser", _browser.ToString());
+            caps.SetCapability("browserstack.user", "foo");
+            caps.SetCapability("browserstack.key", "foo");
+            caps.SetCapability("os", "Windows");
+            caps.SetCapability("osVersion", "10");
+            caps.SetCapability("resolution", "1024x768");
+
             try
             {
-                //todo: extract variables into tuple configuration class, passed into driver on input
-                //todo: atm are caps hardcoded, but have to be separated away
-
-                RemoteSessionSettings caps = new RemoteSessionSettings();
-                caps.AddMetadataSetting("browser", _browser);
-                caps.AddMetadataSetting("os", "Windows");
-                caps.AddMetadataSetting("os_version", "10");
-                caps.AddMetadataSetting("resolution", "1024x768");
-                caps.AddMetadataSetting("browserstack.user", "test21332");
-                caps.AddMetadataSetting("browserstack.key", "tHoXzq5u3YbSDum1BByd");
-
                 return new RemoteWebDriver(new Uri("http://hub-cloud.browserstack.com/wd/hub/"), caps);
             }
             catch (Exception ex)
@@ -44,7 +48,7 @@ namespace SeleniumGoogleCalc.Common.Drivers
             }
         }
 
-        #region Interface
+        #region Interface implementation
         public string Url
         {
             get => _webDriver.Url;
