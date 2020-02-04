@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using Microsoft.VisualBasic.CompilerServices;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using SeleniumGoogleCalc.Common;
@@ -85,6 +87,16 @@ namespace SeleniumGoogleCalc.Tests
         {
             _calculatorBlock.ClickWholeEquation("0+-1");
             Assert.AreEqual(-1, _calculatorBlock.GetResult());
+        }
+
+        [Test]
+        public void AddAscendAndDescend()
+        {
+            //Google calc is capped only to 9 numbers, but correct are both results
+            _calculatorBlock.ClickWholeEquation("0123456789+9876543210");
+
+            decimal result = _calculatorBlock.GetResult();
+            Assert.AreEqual(true, result == 1111111110 || result == 9999999999);
         }
     }
 }
