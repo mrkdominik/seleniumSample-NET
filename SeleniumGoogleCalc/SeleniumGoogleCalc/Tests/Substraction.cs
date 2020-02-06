@@ -59,7 +59,7 @@ namespace SeleniumGoogleCalc.Tests
         }
 
         [Test]
-        public void AddHundredAndTwentyFivePercent()
+        public void SubHundredAndTwentyFivePercent()
         {
             CalculatorBlock.ClickWholeEquation("100-25%");
             Assert.AreEqual(75, CalculatorBlock.GetDecimalResult());
