@@ -26,6 +26,7 @@ namespace SeleniumGoogleCalc.PageObjectModels
         public IWebElement Devide => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(2) > td:nth-child(4) > div > div"));
         public IWebElement Equal => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(5) > td:nth-child(3) > div > div"));
         public IWebElement Dot => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(5) > td:nth-child(2) > div > div"));
+        public IWebElement Percent => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(1) > td:nth-child(3) > div > div"));
         public IWebElement LeftBracket => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(1) > td:nth-child(1) > div > div"));
         public IWebElement RightBracket => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(1) > td:nth-child(2) > div > div"));
         public IWebElement Result => _webDriver.FindElement(By.CssSelector("#cwmcwd > div > div > div.BRpYC > div.TIGsTb > div.fB3vD > div > div"));
@@ -34,10 +35,17 @@ namespace SeleniumGoogleCalc.PageObjectModels
         /// Click Equal button and return decimal result
         /// </summary>
         /// <returns></returns>
-        public decimal GetResult()
+        public decimal GetDecimalResult()
         {
             Equal.Click();
-            return decimal.Parse(Result.Text);
+            string result = Result.Text.Trim().Replace(".", ",");
+            return decimal.Parse(result);
+        }
+
+        public string GetTextResult()
+        {
+            Equal.Click();
+            return Result.Text;
         }
 
         /// <summary>
@@ -63,6 +71,10 @@ namespace SeleniumGoogleCalc.PageObjectModels
             // Without explicit char parsing, it should be faster.
             switch ((int)character)
             {
+                case 37:
+                    Percent.Click();
+                    break;
+
                 case 40:
                     LeftBracket.Click();
                     break;

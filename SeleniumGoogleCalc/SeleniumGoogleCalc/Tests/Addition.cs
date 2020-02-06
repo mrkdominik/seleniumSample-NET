@@ -10,93 +10,60 @@ using SeleniumGoogleCalc.PageObjectModels;
 
 namespace SeleniumGoogleCalc.Tests
 {
-    //[TestFixture(Browser.Chrome)]
-    [TestFixture(Browser.Chrome)]
-    [TestFixture(Browser.Edge)]
-    [Parallelizable(ParallelScope.Fixtures)]
-    public class Addition
+    public class Addition : TestBase
     {
-        private IWebDriver _driver;
-        private readonly Browser _browser;
-        private CalculatorBlock _calculatorBlock;
-
-        public Addition(Browser browser)
-        {
-            _browser = browser;
-        }
-
-        [OneTimeSetUp]
-        public void PrepareElements()
-        {
-            _driver = DriverFactory.CreateInstanceDesktop(_browser);
-            //_driver = DriverFactory.CreateInstanceBrowserStack(_browser);
-
-            _driver.Navigate().GoToUrl(new Uri("https://www.google.com/search?q=calculator"));
-            _driver.Manage().Window.Maximize();
-            _calculatorBlock = new CalculatorBlock(_driver);
-        }
-
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
-        {
-            _driver.Quit();
-        }
-
-        [SetUp]
-        public void SetUps()
-        {
-
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            _driver.Navigate().Refresh();
-        }
-
-        [Test]
-        public void AddSixteenAndFour()
-        {
-            _calculatorBlock.ClickWholeEquation("16+4");
-            Assert.AreEqual(20, _calculatorBlock.GetResult());
-        }
+        public Addition(Browser browser) : base(browser) { }
 
         [Test]
         public void AddZeroAndZero()
         {
-            _calculatorBlock.ClickWholeEquation("0+0");
-            Assert.AreEqual(0, _calculatorBlock.GetResult());
+            CalculatorBlock.ClickWholeEquation("0+0");
+            Assert.AreEqual(0, CalculatorBlock.GetDecimalResult());
         }
 
         [Test]
-        public void AddMinusOneAndZero()
+        public void AddZeroAndOne()
         {
-            _calculatorBlock.ClickWholeEquation("-1+0");
-            Assert.AreEqual(-1, _calculatorBlock.GetResult());
+            CalculatorBlock.ClickWholeEquation("0+1");
+            Assert.AreEqual(1, CalculatorBlock.GetDecimalResult());
         }
 
         [Test]
-        public void AddMinusOneAndMinusOne()
+        public void AddOneAndZero()
         {
-            _calculatorBlock.ClickWholeEquation("-1+-1");
-            Assert.AreEqual(-2, _calculatorBlock.GetResult());
+            CalculatorBlock.ClickWholeEquation("1+0");
+            Assert.AreEqual(1, CalculatorBlock.GetDecimalResult());
         }
 
         [Test]
-        public void AddZeroAndMinusOne()
-        {
-            _calculatorBlock.ClickWholeEquation("0+-1");
-            Assert.AreEqual(-1, _calculatorBlock.GetResult());
-        }
-
-        [Test]
-        public void AddAscendAndDescend()
+        public void AddAscendRangeAndDescendRange()
         {
             //Google calc is capped only to 9 numbers, but correct are both results
-            _calculatorBlock.ClickWholeEquation("0123456789+9876543210");
+            CalculatorBlock.ClickWholeEquation("0123456789+9876543210");
 
-            decimal result = _calculatorBlock.GetResult();
+            decimal result = CalculatorBlock.GetDecimalResult();
             Assert.AreEqual(true, result == 1111111110 || result == 9999999999);
+        }
+
+        [Test]
+        public void AddBracketsFiveAndTwo()
+        {
+            CalculatorBlock.ClickWholeEquation("(+5)+(+2)");
+            Assert.AreEqual(7, CalculatorBlock.GetDecimalResult());
+        }
+
+        [Test]
+        public void AddDecimalTwoPointTwoMinusOne()
+        {
+            CalculatorBlock.ClickWholeEquation("2.2+1");
+            Assert.AreEqual(3.2, CalculatorBlock.GetDecimalResult());
+        }
+
+        [Test]
+        public void AddHundredAndTwentyFivePercent()
+        {
+            CalculatorBlock.ClickWholeEquation("100+25%");
+            Assert.AreEqual(125, CalculatorBlock.GetDecimalResult());
         }
     }
 }

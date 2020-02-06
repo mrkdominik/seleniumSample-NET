@@ -49,11 +49,11 @@ namespace SeleniumGoogleCalc.Common.Drivers
             }
             catch (Exception ex)
             {
-                throw new WebDriverException("Couldn't create Edge driver" + " " + ex.InnerException);
+                throw new WebDriverException($"Couldn't create {_browser} driver {ex.Message}");
             }
         }
 
-        private static IWebDriver ChromeDriver()
+        private IWebDriver ChromeDriver()
         {
             try
             {
@@ -61,11 +61,11 @@ namespace SeleniumGoogleCalc.Common.Drivers
             }
             catch (Exception ex)
             {
-                throw new WebDriverException("Couldn't create Chrome driver" + " " + ex.InnerException);
+                throw new WebDriverException($"Couldn't create {_browser} driver {ex.Message}");
             }
         }
 
-        private static IWebDriver IeDriver()
+        private IWebDriver IeDriver()
         {
             try
             {
@@ -73,7 +73,7 @@ namespace SeleniumGoogleCalc.Common.Drivers
             }
             catch (Exception ex)
             {
-                throw new WebDriverException("Couldn't create Chrome driver" + " " + ex.InnerException);
+                throw new WebDriverException($"Couldn't create Chrome driver {ex.Message}");
             }
         }
 
