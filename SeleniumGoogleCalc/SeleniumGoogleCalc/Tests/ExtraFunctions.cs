@@ -18,21 +18,21 @@ namespace SeleniumGoogleCalc.Tests
         public void ClearEntryFunction()
         {
             //todo:
-            Assert.Fail();
+            Assert.Fail("TBD: not implemented");
         }
 
         [Test]
         public void AllEraseFunction()
         {
             //todo:
-            Assert.Fail();
+            Assert.Fail("TBD: not implemented");
         }
 
         [Test]
         public void HistoryCheck()
         {
             //todo:
-            Assert.Fail();
+            Assert.Fail("TBD: not implemented");
         }
 
     }

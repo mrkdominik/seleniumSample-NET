@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.Extensions;
 using SeleniumGoogleCalc.Common.Drivers;
 using SeleniumGoogleCalc.Common.Enums;
 using SeleniumGoogleCalc.PageObjectModels;
@@ -33,7 +34,9 @@ namespace SeleniumGoogleCalc.Tests
 
             Driver.Navigate().GoToUrl(new Uri("https://www.google.com/search?q=calculator"));
             Driver.Manage().Window.Maximize();
+
             CalculatorBlock = new CalculatorBlock(Driver);
+            CalculatorBlock.BannerClick();
         }
 
         [OneTimeTearDown]

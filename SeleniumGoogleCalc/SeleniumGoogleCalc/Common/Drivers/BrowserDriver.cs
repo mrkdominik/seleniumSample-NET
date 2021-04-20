@@ -4,6 +4,8 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Support.Extensions;
 using SeleniumGoogleCalc.Common.Enums;
 
 namespace SeleniumGoogleCalc.Common.Drivers
@@ -17,6 +19,7 @@ namespace SeleniumGoogleCalc.Common.Drivers
         /// Create new local instance of webDriver based on required browser
         /// </summary>
         /// <param name="browser"></param>
+        /// 
         public BrowserDriver(Browser browser)
         {
             _browser = browser;
@@ -95,6 +98,9 @@ namespace SeleniumGoogleCalc.Common.Drivers
         public INavigation Navigate() => _webDriver.Navigate();
         public void Quit() => _webDriver.Quit();
         public ITargetLocator SwitchTo() => _webDriver.SwitchTo();
+        public object ExecuteScript(string script, params object[] args) => ExecuteScript(script, args);
+        public IJavaScriptExecutor ExecuteJavaScript(string script, params object[] args) => ExecuteJavaScript(script, args);
+
         #endregion
     }
 }
