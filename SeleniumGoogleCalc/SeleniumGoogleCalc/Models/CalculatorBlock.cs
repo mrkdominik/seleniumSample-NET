@@ -15,27 +15,27 @@ namespace SeleniumGoogleCalc.PageObjectModels
         // Elements do not have Ids or Names, so Locator as CSS selector was best option
         private readonly IWebDriver _webDriver;
 
-        public IWebElement Banner => _webDriver.FindElement(By.Id("zV9nZe"));
-        public IWebElement Number0 => _webDriver.FindElement(By.CssSelector("#rso > div:nth-child(1) > div > div > div.card-section > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(5) > td:nth-child(1) > div > div"));
-        public IWebElement Number1 => _webDriver.FindElement(By.CssSelector("#rso > div:nth-child(1) > div > div > div.card-section > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(4) > td:nth-child(1) > div > div"));
-        public IWebElement Number2 => _webDriver.FindElement(By.CssSelector("#rso > div:nth-child(1) > div > div > div.card-section > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(4) > td:nth-child(2) > div > div"));
-        public IWebElement Number3 => _webDriver.FindElement(By.CssSelector("#rso > div:nth-child(1) > div > div > div.card-section > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(4) > td:nth-child(3) > div > div"));
-        public IWebElement Number4 => _webDriver.FindElement(By.CssSelector("#rso > div:nth-child(1) > div > div > div.card-section > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(3) > td:nth-child(1) > div > div"));
-        public IWebElement Number5 => _webDriver.FindElement(By.CssSelector("#rso > div:nth-child(1) > div > div > div.card-section > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(3) > td:nth-child(2) > div > div"));
-        public IWebElement Number6 => _webDriver.FindElement(By.CssSelector("#rso > div:nth-child(1) > div > div > div.card-section > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(3) > td:nth-child(3) > div > div"));
-        public IWebElement Number7 => _webDriver.FindElement(By.CssSelector("#rso > div:nth-child(1) > div > div > div.card-section > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(2) > td:nth-child(1) > div > div"));
-        public IWebElement Number8 => _webDriver.FindElement(By.CssSelector("#rso > div:nth-child(1) > div > div > div.card-section > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(2) > td:nth-child(2) > div > div"));
-        public IWebElement Number9 => _webDriver.FindElement(By.CssSelector("#rso > div:nth-child(1) > div > div > div.card-section > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(2) > td:nth-child(3) > div > div"));
-        public IWebElement Plus => _webDriver.FindElement(By.CssSelector("#rso > div:nth-child(1) > div > div > div.card-section > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(5) > td:nth-child(4) > div > div"));
-        public IWebElement Minus => _webDriver.FindElement(By.CssSelector("#rso > div:nth-child(1) > div > div > div.card-section > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(4) > td:nth-child(4) > div > div"));
-        public IWebElement Multiply => _webDriver.FindElement(By.CssSelector("#rso > div:nth-child(1) > div > div > div.card-section > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(3) > td:nth-child(4) > div > div"));
-        public IWebElement Devide => _webDriver.FindElement(By.CssSelector("#rso > div:nth-child(1) > div > div > div.card-section > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(2) > td:nth-child(4) > div > div"));
-        public IWebElement Equal => _webDriver.FindElement(By.CssSelector("#rso > div:nth-child(1) > div > div > div.card-section > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(5) > td:nth-child(3) > div > div"));
-        public IWebElement Dot => _webDriver.FindElement(By.CssSelector("#rso > div:nth-child(1) > div > div > div.card-section > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(5) > td:nth-child(2) > div > div"));
-        public IWebElement Percent => _webDriver.FindElement(By.CssSelector("#rso > div:nth-child(1) > div > div > div.card-section > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(1) > td:nth-child(3) > div > div"));
-        public IWebElement LeftBracket => _webDriver.FindElement(By.CssSelector("#rso > div:nth-child(1) > div > div > div.card-section > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(1) > td:nth-child(1) > div > div"));
-        public IWebElement RightBracket => _webDriver.FindElement(By.CssSelector("#rso > div:nth-child(1) > div > div > div.card-section > div > div > div.SKWP2e > div > table.ElumCf > tbody > tr:nth-child(1) > td:nth-child(2) > div > div"));
-        public IWebElement Result => _webDriver.FindElement(By.CssSelector("#cwos"));
+        public IWebElement Banner => _webDriver.FindElement(By.Id("L2AGLb"));
+        public IWebElement Number0 => _webDriver.FindElement(By.XPath("//div[text()='0']"));
+        public IWebElement Number1 => _webDriver.FindElement(By.XPath("//div[text()='1']"));
+        public IWebElement Number2 => _webDriver.FindElement(By.XPath("//div[text()='2']"));
+        public IWebElement Number3 => _webDriver.FindElement(By.XPath("//div[text()='3']"));
+        public IWebElement Number4 => _webDriver.FindElement(By.XPath("//div[text()='4']"));
+        public IWebElement Number5 => _webDriver.FindElement(By.XPath("//div[text()='5']"));
+        public IWebElement Number6 => _webDriver.FindElement(By.XPath("//div[text()='6']"));
+        public IWebElement Number7 => _webDriver.FindElement(By.XPath("//div[text()='7']"));
+        public IWebElement Number8 => _webDriver.FindElement(By.XPath("//div[text()='8']"));
+        public IWebElement Number9 => _webDriver.FindElement(By.XPath("//div[text()='9']"));
+        public IWebElement Plus => _webDriver.FindElement(By.XPath("//div[text()='+']"));
+        public IWebElement Minus => _webDriver.FindElement(By.XPath("//div[text()='−']"));
+        public IWebElement Multiply => _webDriver.FindElement(By.XPath("//div[text()='×']"));
+        public IWebElement Devide => _webDriver.FindElement(By.XPath("//div[text()='÷']"));
+        public IWebElement Equal => _webDriver.FindElement(By.XPath("//div[text()='=']"));
+        public IWebElement Dot => _webDriver.FindElement(By.XPath("//td//div[text()='.']"));
+        public IWebElement Percent => _webDriver.FindElement(By.XPath("//div[text()='%']"));
+        public IWebElement LeftBracket => _webDriver.FindElement(By.XPath("//div[text()='(']"));
+        public IWebElement RightBracket => _webDriver.FindElement(By.XPath("//div[text()=')']"));
+        public IWebElement Result => _webDriver.FindElement(By.XPath("//span[@id='cwos']"));
 
 
         public void BannerClick()

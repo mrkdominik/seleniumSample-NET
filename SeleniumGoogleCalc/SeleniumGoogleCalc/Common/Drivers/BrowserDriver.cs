@@ -7,13 +7,16 @@ using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.Extensions;
 using SeleniumGoogleCalc.Common.Enums;
+using WebDriverManager.DriverConfigs.Impl;
+using WebDriverManager.Helpers;
+using WebDriverManager;
 
 namespace SeleniumGoogleCalc.Common.Drivers
 {
     public class BrowserDriver : IWebDriver
     {
         private readonly Browser _browser;
-        private readonly IWebDriver _webDriver;
+        private IWebDriver _webDriver;
 
         /// <summary>
         /// Create new local instance of webDriver based on required browser
@@ -48,6 +51,7 @@ namespace SeleniumGoogleCalc.Common.Drivers
         {
             try
             {
+                new DriverManager().SetUpDriver(new EdgeConfig(), VersionResolveStrategy.MatchingBrowser);
                 return new EdgeDriver();
             }
             catch (Exception ex)
@@ -60,6 +64,7 @@ namespace SeleniumGoogleCalc.Common.Drivers
         {
             try
             {
+                new DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
                 return new ChromeDriver();
             }
             catch (Exception ex)
@@ -72,6 +77,7 @@ namespace SeleniumGoogleCalc.Common.Drivers
         {
             try
             {
+                new DriverManager().SetUpDriver(new EdgeConfig(), VersionResolveStrategy.MatchingBrowser);
                 return new InternetExplorerDriver();
             }
             catch (Exception ex)

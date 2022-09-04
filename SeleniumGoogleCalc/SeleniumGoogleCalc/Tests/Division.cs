@@ -51,13 +51,6 @@ namespace SeleniumGoogleCalc.Tests
         }
 
         [Test]
-        public void DivBracketsFiveAndTwo()
-        {
-            CalculatorBlock.ClickWholeEquation("(+5)+(+2)");
-            Assert.AreEqual(7, CalculatorBlock.GetDecimalResult());
-        }
-
-        [Test]
         public void DivDecimalTwoPointTwoAndTwo()
         {
             CalculatorBlock.ClickWholeEquation("2.2/2");

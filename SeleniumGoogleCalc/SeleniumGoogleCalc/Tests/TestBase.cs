@@ -14,7 +14,7 @@ namespace SeleniumGoogleCalc.Tests
     [TestFixture(Browser.Chrome)]
     //[TestFixture(Browser.Edge)] // Edge webdriver is still from MS as singleton. so it can't run parallelly in scope, only serially.
     //[TestFixture(Browser.Ie)] // IE is soo obsolete, that it runs, but in comparsion is 10x slower
-    [Parallelizable(ParallelScope.Fixtures)]
+    //[Parallelizable(ParallelScope.Fixtures)] // run all test in parralel
     public class TestBase
     {
         protected readonly Browser BrowserB;

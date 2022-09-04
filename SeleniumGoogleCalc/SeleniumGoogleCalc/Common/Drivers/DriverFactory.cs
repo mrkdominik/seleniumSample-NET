@@ -1,4 +1,5 @@
 ﻿using SeleniumGoogleCalc.Common.Enums;
+using System;
 
 namespace SeleniumGoogleCalc.Common.Drivers
 {
@@ -9,6 +10,7 @@ namespace SeleniumGoogleCalc.Common.Drivers
             return new BrowserDriver(browser);
         }
 
+        [Obsolete]
         public static BrowserStackDriver CreateInstanceBrowserStack(Browser browser)
         {
             return new BrowserStackDriver(browser);

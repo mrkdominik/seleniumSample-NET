@@ -18,6 +18,7 @@ namespace SeleniumGoogleCalc.Common.Drivers
         /// Create a new BrowserStackDriver for wanted Browser
         /// </summary>
         /// <param name="browser"></param>
+        [Obsolete]
         public BrowserStackDriver(Browser browser)
         {
             _browser = browser;

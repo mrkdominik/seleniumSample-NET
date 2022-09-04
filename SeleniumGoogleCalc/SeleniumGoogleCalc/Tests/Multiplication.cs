@@ -50,13 +50,6 @@ namespace SeleniumGoogleCalc.Tests
         }
 
         [Test]
-        public void MulBracketsTenAndTwo()
-        {
-            CalculatorBlock.ClickWholeEquation("(10)*(2)");
-            Assert.AreEqual(20, CalculatorBlock.GetDecimalResult());
-        }
-
-        [Test]
         public void MulDecimalTwoPointTwoAndTwo()
         {
             CalculatorBlock.ClickWholeEquation("2.2*2");
