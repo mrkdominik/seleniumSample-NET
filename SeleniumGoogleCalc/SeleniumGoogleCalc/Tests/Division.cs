@@ -54,7 +54,7 @@ namespace SeleniumGoogleCalc.Tests
         public void DivDecimalTwoPointTwoAndTwo()
         {
             CalculatorBlock.ClickWholeEquation("2.2/2");
-            Assert.AreEqual(1.1, CalculatorBlock.GetDecimalResult());
+            Assert.AreEqual("1.1", CalculatorBlock.GetTextResult());
         }
 
         [Test]

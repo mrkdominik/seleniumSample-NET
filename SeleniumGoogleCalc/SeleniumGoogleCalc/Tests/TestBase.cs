@@ -34,9 +34,6 @@ namespace SeleniumGoogleCalc.Tests
 
             Driver.Navigate().GoToUrl(new Uri("https://www.google.com/search?q=calculator"));
             Driver.Manage().Window.Maximize();
-
-            CalculatorBlock = new CalculatorBlock(Driver);
-            CalculatorBlock.BannerClick();
         }
 
         [OneTimeTearDown]
@@ -50,7 +47,8 @@ namespace SeleniumGoogleCalc.Tests
         [SetUp]
         public void SetUp()
         {
-
+            CalculatorBlock = new CalculatorBlock(Driver);
+            CalculatorBlock.BannerClick();
         }
 
         [TearDown]

@@ -15,7 +15,7 @@ namespace SeleniumGoogleCalc.PageObjectModels
         // Elements do not have Ids or Names, so Locator as CSS selector was best option
         private readonly IWebDriver _webDriver;
 
-        public IWebElement Banner => _webDriver.FindElement(By.Id("L2AGLb"));
+        public IWebElement Banner => _webDriver.FindElement(By.XPath("//button[@id='L2AGLb']"));
         public IWebElement Number0 => _webDriver.FindElement(By.XPath("//div[text()='0']"));
         public IWebElement Number1 => _webDriver.FindElement(By.XPath("//div[text()='1']"));
         public IWebElement Number2 => _webDriver.FindElement(By.XPath("//div[text()='2']"));
@@ -37,11 +37,15 @@ namespace SeleniumGoogleCalc.PageObjectModels
         public IWebElement RightBracket => _webDriver.FindElement(By.XPath("//div[text()=')']"));
         public IWebElement Result => _webDriver.FindElement(By.XPath("//span[@id='cwos']"));
 
-
         public void BannerClick()
         {
-            if (Banner.Displayed)
+            if (IsBannerPresent())
                 Banner.Click();
+        }
+
+        public bool IsBannerPresent()
+        {        
+            return _webDriver.FindElements(By.XPath("//button[@id='L2AGLb']")).Count > 0;
         }
 
         /// <summary>

@@ -53,7 +53,7 @@ namespace SeleniumGoogleCalc.Tests
         public void MulDecimalTwoPointTwoAndTwo()
         {
             CalculatorBlock.ClickWholeEquation("2.2*2");
-            Assert.AreEqual(4.4, CalculatorBlock.GetDecimalResult());
+            Assert.AreEqual("4.4", CalculatorBlock.GetTextResult());
         }
         [Test]
         public void MulHundredAndTwentyFivePercent()

@@ -55,7 +55,7 @@ namespace SeleniumGoogleCalc.Tests
         public void SubDecimalTwoPointTwoMinusOne()
         {
             CalculatorBlock.ClickWholeEquation("2.2-1");
-            Assert.AreEqual(1.2, CalculatorBlock.GetDecimalResult());
+            Assert.AreEqual("1.2", CalculatorBlock.GetTextResult());
         }
 
         [Test]
